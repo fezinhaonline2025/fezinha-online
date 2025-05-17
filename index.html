@@ -146,11 +146,10 @@
     const contato = document.getElementById('contato').value;
     const quantidade = parseInt(document.getElementById('quantidade').value);
 
-    fetch('https://script.google.com/macros/s/AKfycbwuTJowuA0SmvwUYkL-Q9eWRgBVFqWZx-LWvQ3SdzN6UzvxP0JTQyMU7EXLXR5FgqBkRg/exec', {
-     fetch(endpoint, {
-  method: 'POST',
+   fetch("https://sorteio.fezinha-online2025.workers.dev/", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/x-www-form-urlencoded",
   },
   body: JSON.stringify(dados)
 })
