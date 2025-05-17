@@ -132,48 +132,60 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    const form = document.getElementById('pixForm');
-    const qrcodeDiv = document.getElementById('qrcode');
-    const qrcodeContainer = document.getElementById('qrcode-container');
-    const pixInput = document.getElementById('pixCopiar');
+ <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script>
+  const form = document.getElementById('pixForm');
+  const qrcodeDiv = document.getElementById('qrcode');
+  const qrcodeContainer = document.getElementById('qrcode-container');
+  const pixInput = document.getElementById('pixCopiar');
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const nome = document.getElementById('nome').value;
-      const contato = document.getElementById('contato').value;
-      const quantidade = parseInt(document.getElementById('quantidade').value);
-      const valor = (quantidade * 0.99).toFixed(2);
+    const nome = document.getElementById('nome').value;
+    const contato = document.getElementById('contato').value;
+    const quantidade = parseInt(document.getElementById('quantidade').value);
 
-      fetch('https://script.google.com/macros/s/SEU_ID/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwuTJowuA0SmvwUYkL-Q9eWRgBVFqWZx-LWvQ3SdzN6UzvxP0JTQyMU7EXLXR5FgqBkRg/exec', {
       method: 'POST',
       headers: {
-      'Content-Type': 'application/json'
-  },
-     body: JSON.stringify({
-     nome: nome,
-     whatsapp: whatsapp,
-     quantidade: quantidade
-  })
-})
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nome: nome,
+        whatsapp: contato,
+        quantidade: quantidade
+      })
+    })
     .then(res => res.json())
     .then(dados => {
-   console.log("Resposta:", dados);
-  // exibir dados.numeros e dados.init_point
-})
-  .catch(err => console.error("Erro:", err));
+      console.log("Resposta:", dados);
 
-      });
+      if (dados.init_point) {
+        // Mostra o QR Code
+        qrcodeContainer.style.display = 'block';
+        QRCode.toDataURL(dados.init_point)
+          .then(url => {
+            qrcodeDiv.innerHTML = `<img src="${url}" alt="QR Code Pix">`;
+            pixInput.value = dados.init_point;
+          });
+      } else {
+        alert("Erro ao gerar pagamento. Tente novamente.");
+      }
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+      alert("Erro ao processar o pagamento.");
     });
+  });
 
-    function copiarPix() {
-      const input = document.getElementById("pixCopiar");
-      input.select();
-      input.setSelectionRange(0, 99999);
-      document.execCommand("copy");
-      alert("Código Pix copiado!");
-    }
-  </script>
+  function copiarPix() {
+    const input = document.getElementById("pixCopiar");
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Código Pix copiado!");
+  }
+</script>
 </body>
 </html>
