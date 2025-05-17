@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fezinha Online - Campanha 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .campanha-img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #555;
+      line-height: 1.5;
+    }
+    .btn-comprar {
+      background-color: #28a745;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .btn-comprar:hover {
+      background-color: #218838;
+    }
+    .info-box {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://via.placeholder.com/600x300?text=Seu+Pr%C3%AAmio+Aqui" alt="Prêmio" class="campanha-img">
+    <h1>Sorteio - iPhone 14 Pro</h1>
+    <p>Participe deste super sorteio e concorra a um iPhone 14 Pro! Cada número custa apenas <strong>R$ 2,00</strong>. Após o pagamento, seus números serão gerados automaticamente e enviados para seu WhatsApp ou email.</p>
+
+    <div class="info-box">
+      <strong>Prêmio:</strong> iPhone 14 Pro <br>
+      <strong>Data do Sorteio:</strong> 30/06/2025 <br>
+      <strong>Valor por número:</strong> R$ 2,00
+    </div>
+
+    <button class="btn-comprar" onclick="redirecionarPagamento()">Participar do Sorteio</button>
+  </div>
+
+  <script>
+    function redirecionarPagamento() {
+      // Simula redirecionamento para uma plataforma de pagamento
+      window.location.href = "https://link.do.seu.checkout.aqui";
+    }
+  </script>
+</body>
+</html>
