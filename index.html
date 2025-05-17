@@ -146,7 +146,7 @@
       const quantidade = parseInt(document.getElementById('quantidade').value);
       const valor = (quantidade * 0.99).toFixed(2);
 
-      fetch('https://script.google.com/macros/s/AKfycby8kbcKd7d-W6cmOfRhbIMvsVthQ0QxNvxBcnA-nxptOn0FTzaQFkXJdrnq1HUNex4tug/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbwSjLPP20775Mkik9rkUIOwbOwoM83QkU4o0aXPlyglzkwJuYZnMEBZZaRwxxtQC1Z7Aw/exec', {
         method: 'POST',
         body: JSON.stringify({ nome, contato, quantidade, valor }),
         headers: { 'Content-Type': 'application/json' }
