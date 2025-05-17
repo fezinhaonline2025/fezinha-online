@@ -3,99 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fezinha Online - Sorteio iPhone</title>
+  <title>Fezinha Online - Sorteio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      padding: 0;
+      background-color: #f9f9f9;
       color: #333;
     }
-    .hero {
-      text-align: center;
-      padding: 30px;
-      background: #fff;
-    }
-    .hero img {
-      width: 280px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .hero h1 {
-      font-size: 28px;
-      margin: 20px 0 10px;
-      color: #222;
-    }
-    .info {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .cta {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #28a745;
+
+    header {
+      background-color: #007bff;
       color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 18px;
-      margin-top: 10px;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
-    .cta:hover {
-      background-color: #218838;
-    }
-    .section {
-      background: #fff;
-      padding: 30px;
-      margin: 20px auto;
-      max-width: 800px;
+
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    h2 {
-      color: #444;
+
+    .hero-img {
+      width: 100%;
+      border-radius: 10px;
     }
-    p {
-      font-size: 16px;
+
+    .info {
+      margin-top: 1.5rem;
+    }
+
+    .info p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .info strong {
+      color: #000;
+    }
+
+    .pay-btn {
+      display: block;
+      margin: 2rem 0;
+      background: #28a745;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .regulamento {
+      font-size: 0.9rem;
       line-height: 1.6;
+      background-color: #f1f1f1;
+      padding: 1rem;
+      border-radius: 8px;
     }
-    ul {
-      font-size: 16px;
-      margin-left: 20px;
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.2rem;
+      }
+
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="hero">
-    <img src="https://www.apple.com/v/iphone-15-pro/b/images/overview/hero/hero_iphone_15pro__e7h5fjj35mye_large.jpg" alt="iPhone 16 Pro Max">
-    <h1>🎁 Sorteio de um iPhone 16 Pro Max ou R$10.000,00 no Pix</h1>
-    <div class="info">
-      📅 Data do sorteio: Após finalizar 100% das cotas<br>
-      💸 Valor: R$ 0,99 por número
-    </div>
-    <a class="cta" href="https://pagamento.com/seulink" target="_blank">Participar do Sorteio</a>
+<header>
+  Fezinha Online - Sorteio de iPhone 16 Pro Max
+</header>
+
+<div class="container">
+  <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" alt="iPhone 16 Pro Max" class="hero-img">
+
+  <div class="info">
+    <p>🎁 <strong>Prêmio:</strong> 01 iPhone 16 Pro Max ou R$ 10.000,00 no Pix</p>
+    <p>📅 <strong>Data do sorteio:</strong> Após finalizar 100% das cotas</p>
+    <p>💸 <strong>Valor:</strong> R$ 0,99 por número</p>
   </div>
 
-  <div class="section">
-    <h2>📜 DESCRIÇÃO / REGULAMENTO</h2>
-    <p>
-      O sorteio será realizado <strong>AO VIVO</strong> através do canal no YouTube:
-      <a href="https://www.youtube.com/@somosnovosricos" target="_blank">@somosnovosricos</a> assim que 100% das cotas forem preenchidas.
-      Já se inscreva no canal e ative o sininho de notificações.
-    </p>
+  <a class="pay-btn" href="https://pagamento.com/seulink" target="_blank">Fazer pagamento e gerar número</a>
+
+  <div class="regulamento">
+    <h3>DESCRIÇÃO / REGULAMENTO</h3>
+    <p>O sorteio será realizado AO VIVO através do Canal no Youtube <a href="https://www.youtube.com/@somosnovosricos" target="_blank">@somosnovosricos</a> ao finalizar 100% das cotas. Já se inscreva no canal e ative o sininho de notificações.</p>
     <ul>
-      <li>❌ Não fazemos estorno de bilhetes</li>
-      <li>📌 Não nos responsabilizamos por dados adicionados incorretamente</li>
-      <li>📞 Caso o ganhador não seja encontrado em até 10 dias, novo sorteio será realizado</li>
-      <li>📦 Envio do prêmio será combinado com o ganhador</li>
-      <li>💰 O ganhador poderá optar entre receber o iPhone ou R$ 10.000,00 via Pix</li>
-      <li>⚠️ O Pix será feito apenas para conta em nome do comprador</li>
+      <li>Não fazemos estorno de bilhetes;</li>
+      <li>Não nos responsabilizamos por dados adicionados incorretamente;</li>
+      <li>Em caso de não encontrarmos o ganhador no prazo de 10 dias após o sorteio, será realizado novo sorteio.</li>
+      <li>O envio do prêmio será combinado com o ganhador, que poderá optar por envio físico ou R$ 10.000,00 via Pix.</li>
+      <li>Pagamento será realizado somente para conta no nome do comprador.</li>
+      <li>Durante a ação, sorteios espontâneos poderão ocorrer.</li>
     </ul>
-    <p>
-      Durante a ação poderão ocorrer sorteios extras decididos pelo casal organizador.
-    </p>
   </div>
+</div>
 
 </body>
 </html>
