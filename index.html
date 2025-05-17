@@ -132,60 +132,50 @@
   </footer>
 
   <!-- Scripts -->
- <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-<script>
-  const form = document.getElementById('pixForm');
-  const qrcodeDiv = document.getElementById('qrcode');
-  const qrcodeContainer = document.getElementById('qrcode-container');
-  const pixInput = document.getElementById('pixCopiar');
+  <script>
+    const form = document.getElementById('pixForm');
+    const qrcodeDiv = document.getElementById('qrcode');
+    const qrcodeContainer = document.getElementById('qrcode-container');
+    const pixInput = document.getElementById('pixCopiar');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    const nome = document.getElementById('nome').value;
-    const contato = document.getElementById('contato').value;
-    const quantidade = parseInt(document.getElementById('quantidade').value);
+      const nome = document.getElementById('nome').value;
+      const contato = document.getElementById('contato').value;
+      const quantidade = parseInt(document.getElementById('quantidade').value);
 
-    fetch('https://script.google.com/macros/s/AKfycbwuTJowuA0SmvwUYkL-Q9eWRgBVFqWZx-LWvQ3SdzN6UzvxP0JTQyMU7EXLXR5FgqBkRg/exec', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        nome: nome,
-        whatsapp: contato,
-        quantidade: quantidade
+      fetch('https://script.google.com/macros/s/AKfycby8kbcKd7d-W6cmOfRhbIMvsVthQ0QxNvxBcnA-nxptOn0FTzaQFkXJdrnq1HUNex4tug/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome: nome,
+          whatsapp: contato,
+          quantidade: quantidade
+        })
       })
-    })
-    .then(res => res.json())
-    .then(dados => {
-      console.log("Resposta:", dados);
-
-      if (dados.init_point) {
-        // Mostra o QR Code
-        qrcodeContainer.style.display = 'block';
-        QRCode.toDataURL(dados.init_point)
-          .then(url => {
-            qrcodeDiv.innerHTML = `<img src="${url}" alt="QR Code Pix">`;
-            pixInput.value = dados.init_point;
-          });
-      } else {
-        alert("Erro ao gerar pagamento. Tente novamente.");
-      }
-    })
-    .catch(err => {
-      console.error("Erro:", err);
-      alert("Erro ao processar o pagamento.");
+      .then(res => res.json())
+      .then(dados => {
+        console.log("Resposta:", dados);
+        qrcodeContainer.style.display = "block";
+        qrcodeDiv.innerHTML = `<img src="${dados.qrcode}" alt="QR Code PIX">`;
+        pixInput.value = dados.copiaecola;
+      })
+      .catch(err => {
+        console.error("Erro:", err);
+        alert("Erro ao gerar pagamento Pix. Tente novamente.");
+      });
     });
-  });
 
-  function copiarPix() {
-    const input = document.getElementById("pixCopiar");
-    input.select();
-    input.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-    alert("Código Pix copiado!");
-  }
-</script>
+    function copiarPix() {
+      const input = document.getElementById("pixCopiar");
+      input.select();
+      input.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Código Pix copiado!");
+    }
+  </script>
 </body>
 </html>
