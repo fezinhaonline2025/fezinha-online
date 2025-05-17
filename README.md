@@ -9,6 +9,18 @@
     body {
       background-color: #f8f9fa;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .logo {
+      max-width: 200px;
+      margin: 20px auto;
+      display: block;
+    }
+    .promo-img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
     }
     .card {
       border-radius: 12px;
@@ -25,16 +37,6 @@
     .btn-custom:hover {
       background-color: #218838;
     }
-    .logo {
-      max-width: 200px;
-      margin: 20px auto;
-      display: block;
-    }
-    img.promo-img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
     .regulamento {
       background: #fff;
       padding: 20px;
@@ -47,14 +49,14 @@
 
   <!-- Logo -->
   <div class="text-center">
-    <img src="https://fezinhaonline2025.github.io/fezinha-online/logo-fezinha-online.png" alt="Fezinha Online" class="logo">
+    <img src="logo-fezinha-online.png" alt="Fezinha Online" class="logo">
   </div>
 
   <div class="container my-4">
 
     <!-- Imagem de destaque -->
     <div class="text-center">
-      <img src="https://fezinhaonline2025.github.io/fezinha-online/sorteio%20sao%20jo%C3%A3o.png" alt="Sorteio São João" class="promo-img">
+      <img src="sorteio-sao-joao.png" alt="Sorteio São João" class="promo-img">
     </div>
 
     <!-- Card sorteio -->
@@ -78,21 +80,4 @@
       <p>📺 O sorteio será realizado <strong>AO VIVO</strong> através do Canal no YouTube <a href="https://www.youtube.com/@somosnovosricos" target="_blank">Somos Novos Ricos</a> ao finalizar 100% das cotas. Já se inscreva no canal e ative o sininho de notificações.</p>
 
       <ul>
-        <li>❌ Não fazemos estorno de bilhetes;</li>
-        <li>❗ Não nos responsabilizamos por dados adicionados incorretamente;</li>
-        <li>🕐 Em caso de não encontrarmos o ganhador no prazo de 10 dias após o sorteio, será realizado novo sorteio.</li>
-        <li>📦 O envio do prêmio será combinado com o ganhador: envio do iPhone ou R$ 10.000,00 via Pix (somente para conta no nome cadastrado).</li>
-        <li>🎉 Durante a ação poderão ocorrer sorteios espontâneos a ser decidido pelo casal.</li>
-      </ul>
-
-      <p><strong>Prêmio Principal:</strong> 01 iPhone 16 Pro Max ou R$ 10.000,00 (dez mil reais) no Pix</p>
-    </div>
-
-  </div>
-
-  <footer class="text-center text-muted mt-4 mb-3" style="font-size: 14px;">
-    &copy; 2025 Fezinha Online. Todos os direitos reservados.
-  </footer>
-
-</body>
-</html>
+        <li>❌ Não fazemos est
