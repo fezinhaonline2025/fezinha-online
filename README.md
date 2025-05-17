@@ -13,8 +13,8 @@
       padding: 0;
     }
     .logo {
-      max-width: 200px;
-      margin: 20px auto;
+      max-width: 180px;
+      margin: 30px auto 10px;
       display: block;
     }
     .promo-img {
@@ -48,9 +48,9 @@
 <body>
 
   <!-- Logo -->
-  <div class="text-center">
-    <img src="logo-fezinha-online.png" alt="Fezinha Online" class="logo">
-  </div>
+  <header class="text-center">
+    <img src="logo-fezinha-online1.png" alt="Fezinha Online" class="logo">
+  </header>
 
   <div class="container my-4">
 
@@ -80,4 +80,21 @@
       <p>📺 O sorteio será realizado <strong>AO VIVO</strong> através do Canal no YouTube <a href="https://www.youtube.com/@somosnovosricos" target="_blank">Somos Novos Ricos</a> ao finalizar 100% das cotas. Já se inscreva no canal e ative o sininho de notificações.</p>
 
       <ul>
-        <li>❌ Não fazemos est
+        <li>❌ Não fazemos estorno de bilhetes;</li>
+        <li>❗ Não nos responsabilizamos por dados adicionados incorretamente;</li>
+        <li>🕐 Em caso de não encontrarmos o ganhador no prazo de 10 dias após o sorteio, será realizado novo sorteio.</li>
+        <li>📦 O envio do prêmio será combinado com o ganhador: envio do iPhone ou R$ 10.000,00 via Pix (somente para conta no nome cadastrado).</li>
+        <li>🎉 Durante a ação poderão ocorrer sorteios espontâneos a ser decidido pelo casal.</li>
+      </ul>
+
+      <p><strong>Prêmio Principal:</strong> 01 iPhone 16 Pro Max ou R$ 10.000,00 (dez mil reais) no Pix</p>
+    </div>
+
+  </div>
+
+  <footer class="text-center text-muted mt-4 mb-3" style="font-size: 14px;">
+    &copy; 2025 Fezinha Online. Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
