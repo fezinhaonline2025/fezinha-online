@@ -22,7 +22,7 @@
       max-width: 100px;
     }
     .container {
-      padding-top: 120px;
+      padding-top: 120px; /* espaçamento para não encavalar no mobile */
     }
     .promo-img {
       max-width: 100%;
@@ -74,13 +74,15 @@
          💸 <strong>Valor:</strong> R$ 0,99 por número
       </p>
 
-      <!-- Escolha de cotas -->
-      <label for="qtdCotas" class="form-label mt-3">Quantas cotas deseja comprar?</label>
-      <input type="number" id="qtdCotas" class="form-control mb-2" min="1" value="1" onchange="calcularValor()">
-      <p><strong>Valor total:</strong> <span id="valorTotal">R$ 0,99</span></p>
+      <!-- Quantidade de cotas -->
+      <div class="mb-3">
+        <label for="qtdCotas" class="form-label">Selecione a quantidade de cotas que deseja adquirir:</label>
+        <input type="number" class="form-control" id="qtdCotas" min="1" placeholder="Ex: 5">
+      </div>
 
+      <!-- Botão de pagamento -->
       <div class="text-center mt-3">
-        <button class="btn btn-custom w-100" onclick="gerarPix()">Fazer pagamento e gerar número</button>
+        <button onclick="gerarPix()" class="btn btn-custom">Fazer pagamento</button>
       </div>
 
       <p class="text-muted text-center mt-3" style="font-size: 14px;">Após o pagamento, seu número será enviado automaticamente por WhatsApp ou e-mail.</p>
@@ -108,27 +110,24 @@
     &copy; 2025 Fezinha Online. Todos os direitos reservados.
   </footer>
 
-  <!-- Script Pix -->
+  <!-- Script de geração de QR Code do PIX -->
   <script>
-    function calcularValor() {
-      const qtd = parseInt(document.getElementById('qtdCotas').value || 1);
-      const total = (qtd * 0.99).toFixed(2).replace('.', ',');
-      document.getElementById('valorTotal').textContent = `R$ ${total}`;
-    }
-
     function gerarPix() {
-      const qtd = parseInt(document.getElementById('qtdCotas').value || 1);
-      const valor = (qtd * 0.99).toFixed(2);
+      const qtdCotas = parseInt(document.getElementById('qtdCotas').value);
+      if (!qtdCotas || qtdCotas <= 0) {
+        alert("Por favor, selecione a quantidade de cotas.");
+        return;
+      }
 
-      // Substitua com sua chave Pix real
-      const chavePix = '02891473108';
-      const nome = 'Janderson Garcia de Arruda';
-      const cidade = 'Palhoça';
+      const valorTotal = (qtdCotas * 0.99).toFixed(2);
 
-      const descricao = `Sorteio Fezinha Online - ${qtd} cotas`;
+      // DADOS PIX (Substitua com seus dados reais)
+      const chave = '02891473108'; // Sua chave Pix
+      const tipoChave = 'cpf'; // cpf | telefone | email | aleatoria
+      const nome = 'Janderson Garcia de Arruda'; // Seu nome
+      const cidade = 'Florianópolis'; // Sua cidade
 
-      // Link para gerar QR Code com base no valor e chave
-      const url = `https://gerarpix.com.br/api/v1/pix?nome=${encodeURIComponent(nome)}&cidade=${encodeURIComponent(cidade)}&chave=${encodeURIComponent(chavePix)}&valor=${valor}&info=${encodeURIComponent(descricao)}`;
+      const url = `https://gerarpix.com.br/api/v1/pix?nome=${encodeURIComponent(nome)}&cidade=${encodeURIComponent(cidade)}&chave=${encodeURIComponent(chave)}&valor=${valorTotal}&tipo=${tipoChave}&info=Sorteio%20Fezinha%20Online%20-%20${qtdCotas}%20cotas`;
 
       window.open(url, '_blank');
     }
