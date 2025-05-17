@@ -158,9 +158,8 @@
       })
     })
     .then(res => res.json())
-    .then(dados => {
-      console.log("Resposta:", dados);
-      qrcodeContainer.style.display = "block";
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
 
       // Exibe link do Mercado Pago
       qrcodeDiv.innerHTML = `
