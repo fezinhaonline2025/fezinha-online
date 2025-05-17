@@ -90,7 +90,8 @@
 </header>
 
 <div class="container">
-  <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" alt="iPhone 16 Pro Max" class="hero-img">
+  <img src="https://fezinhaonline2025.github.io/fezinha-online/sorteio-sao-joao.png" alt="Sorteio São João" class="iphone-img">
+
 
   <div class="info">
     <p>🎁 <strong>Prêmio:</strong> 01 iPhone 16 Pro Max ou R$ 10.000,00 no Pix</p>
