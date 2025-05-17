@@ -146,24 +146,24 @@
       const quantidade = parseInt(document.getElementById('quantidade').value);
       const valor = (quantidade * 0.99).toFixed(2);
 
-      fetch('https://script.google.com/macros/s/AKfycbwSjLPP20775Mkik9rkUIOwbOwoM83QkU4o0aXPlyglzkwJuYZnMEBZZaRwxxtQC1Z7Aw/exec', {
-        method: 'POST',
-        body: JSON.stringify({ nome, contato, quantidade, valor }),
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.qr_code && data.copia_cola) {
-          qrcodeDiv.innerHTML = `<img src="${data.qr_code}" alt="QR Code Pix" />`;
-          pixInput.value = data.copia_cola;
-          qrcodeContainer.style.display = 'block';
-        } else {
-          alert("Erro ao gerar o pagamento. Tente novamente.");
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Erro ao processar. Verifique sua conexão.");
+      fetch('https://script.google.com/macros/s/SEU_ID/exec', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+  },
+     body: JSON.stringify({
+     nome: nome,
+     whatsapp: whatsapp,
+     quantidade: quantidade
+  })
+})
+    .then(res => res.json())
+    .then(dados => {
+   console.log("Resposta:", dados);
+  // exibir dados.numeros e dados.init_point
+})
+  .catch(err => console.error("Erro:", err));
+
       });
     });
 
