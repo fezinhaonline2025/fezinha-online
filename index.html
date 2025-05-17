@@ -133,6 +133,7 @@
 
   <!-- Scripts -->
   <!-- Dentro do <script> no final do seu HTML: -->
+<!-- Scripts -->
 <script>
   const form = document.getElementById('pixForm');
   const qrcodeDiv = document.getElementById('qrcode');
@@ -146,31 +147,39 @@
     const contato = document.getElementById('contato').value;
     const quantidade = parseInt(document.getElementById('quantidade').value);
 
-   fetch("https://sorteio.fezinha-online2025.workers.dev/", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body: JSON.stringify(dados)
-})
-.then(res => res.json())
-.then(data => {
-  console.log("Sucesso:", data);
+    // Criando o objeto corretamente
+    const dados = {
+      nome: nome,
+      contato: contato,
+      cotas: quantidade
+    };
 
-  // Exibe link do Mercado Pago
-  qrcodeDiv.innerHTML = `
-    <a href="${data.init_point}" target="_blank" class="btn btn-success mt-2">Clique aqui para pagar via PIX</a>
-    <p class="mt-3">Números gerados: <strong>${data.numeros.join(", ")}</strong></p>
-  `;
+    fetch("https://sorteio.fezinha-online2025.workers.dev/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dados)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Sucesso:", data);
 
-  pixInput.value = data.init_point; // Link no campo de cópia
-})
-.catch(err => {
-  console.error("Erro na requisição:", err);
-  alert("Erro ao gerar pagamento Pix. Tente novamente.");
-});
+      qrcodeDiv.innerHTML = `
+        <a href="${data.init_point}" target="_blank" class="btn btn-success mt-2">Clique aqui para pagar via PIX</a>
+        <p class="mt-3">Números gerados: <strong>${data.numeros.join(", ")}</strong></p>
+      `;
 
+      pixInput.value = data.init_point;
+      qrcodeContainer.style.display = "block";
+    })
+    .catch(err => {
+      console.error("Erro na requisição:", err);
+      alert("Erro ao gerar pagamento Pix. Tente novamente.");
+    });
+  });
 
+  // Corrigido: função fora do addEventListener
   function copiarPix() {
     const input = document.getElementById("pixCopiar");
     input.select();
@@ -179,6 +188,7 @@
     alert("Link do pagamento copiado!");
   }
 </script>
+
 
 </body>
 </html>
