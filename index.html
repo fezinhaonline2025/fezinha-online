@@ -12,10 +12,13 @@
       margin: 0;
       padding: 0;
     }
+    .logo-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
     .logo {
-      max-width: 180px;
-      margin: 30px auto 10px;
-      display: block;
+      max-width: 100px;
     }
     .promo-img {
       max-width: 100%;
@@ -47,15 +50,15 @@
 </head>
 <body>
 
-  <!-- Logo -->
-  <header class="text-center">
+  <!-- Logo no canto superior esquerdo -->
+  <div class="logo-container">
     <img src="logo-fezinha-online1.png" alt="Fezinha Online" class="logo">
-  </header>
+  </div>
 
   <div class="container my-4">
 
     <!-- Imagem de destaque -->
-    <div class="text-center">
+    <div class="text-center mt-5">
       <img src="sorteio-sao-joao.png" alt="Sorteio São João" class="promo-img">
     </div>
 
