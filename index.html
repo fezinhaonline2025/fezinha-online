@@ -132,50 +132,58 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    const form = document.getElementById('pixForm');
-    const qrcodeDiv = document.getElementById('qrcode');
-    const qrcodeContainer = document.getElementById('qrcode-container');
-    const pixInput = document.getElementById('pixCopiar');
+  <!-- Dentro do <script> no final do seu HTML: -->
+<script>
+  const form = document.getElementById('pixForm');
+  const qrcodeDiv = document.getElementById('qrcode');
+  const qrcodeContainer = document.getElementById('qrcode-container');
+  const pixInput = document.getElementById('pixCopiar');
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const nome = document.getElementById('nome').value;
-      const contato = document.getElementById('contato').value;
-      const quantidade = parseInt(document.getElementById('quantidade').value);
+    const nome = document.getElementById('nome').value;
+    const contato = document.getElementById('contato').value;
+    const quantidade = parseInt(document.getElementById('quantidade').value);
 
-      fetch('https://script.google.com/macros/s/AKfycby8kbcKd7d-W6cmOfRhbIMvsVthQ0QxNvxBcnA-nxptOn0FTzaQFkXJdrnq1HUNex4tug/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nome: nome,
-          whatsapp: contato,
-          quantidade: quantidade
-        })
+    fetch('https://script.google.com/macros/s/AKfycby8kbcKd7d-W6cmOfRhbIMvsVthQ0QxNvxBcnA-nxptOn0FTzaQFkXJdrnq1HUNex4tug/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nome: nome,
+        whatsapp: contato,
+        quantidade: quantidade
       })
-      .then(res => res.json())
-      .then(dados => {
-        console.log("Resposta:", dados);
-        qrcodeContainer.style.display = "block";
-        qrcodeDiv.innerHTML = `<img src="${dados.qrcode}" alt="QR Code PIX">`;
-        pixInput.value = dados.copiaecola;
-      })
-      .catch(err => {
-        console.error("Erro:", err);
-        alert("Erro ao gerar pagamento Pix. Tente novamente.");
-      });
+    })
+    .then(res => res.json())
+    .then(dados => {
+      console.log("Resposta:", dados);
+      qrcodeContainer.style.display = "block";
+
+      // Exibe link do Mercado Pago
+      qrcodeDiv.innerHTML = `
+        <a href="${dados.init_point}" target="_blank" class="btn btn-success mt-2">Clique aqui para pagar via PIX</a>
+        <p class="mt-3">Números gerados: <strong>${dados.numeros.join(", ")}</strong></p>
+      `;
+
+      pixInput.value = dados.init_point; // Link no campo de cópia
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+      alert("Erro ao gerar pagamento Pix. Tente novamente.");
     });
+  });
 
-    function copiarPix() {
-      const input = document.getElementById("pixCopiar");
-      input.select();
-      input.setSelectionRange(0, 99999);
-      document.execCommand("copy");
-      alert("Código Pix copiado!");
-    }
-  </script>
+  function copiarPix() {
+    const input = document.getElementById("pixCopiar");
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Link do pagamento copiado!");
+  }
+</script>
+
 </body>
 </html>
