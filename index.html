@@ -160,18 +160,16 @@
         body: JSON.stringify(dados)
       })
       .then(res => res.json())
-     <!-- substitua este trecho dentro do .then(data => {...}) -->
-.then(data => {
-  if (data.qr_code && data.qr_code_base64) {
-    qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code Pix">`;
-    pixInput.value = data.qr_code;
-    numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">Após a confirmação do pagamento, seus números serão gerados automaticamente e enviados para o e-mail cadastrado.</p>`;
-    qrcodeContainer.style.display = "block";
-  } else {
-    alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
-  }
-})
-
+      .then(data => {
+        if (data.qr_code && data.qr_code_base64) {
+          qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code Pix">`;
+          pixInput.value = data.qr_code;
+          numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">Após a confirmação do pagamento, seus números serão gerados automaticamente e enviados para o e-mail cadastrado.</p>`;
+          qrcodeContainer.style.display = "block";
+        } else {
+          alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
+        }
+      })
       .catch(err => {
         console.error("Erro:", err);
         alert("Erro ao gerar pagamento. Tente novamente.");
