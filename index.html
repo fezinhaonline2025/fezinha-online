@@ -105,25 +105,16 @@
         <p class="mt-3">Ou copie o código Pix abaixo:</p>
         <input type="text" id="pixCopiar" class="form-control" readonly>
         <button type="button" onclick="copiarPix()" class="btn btn-sm btn-secondary mt-2">Copiar código</button>
-        <div id="numerosGerados" class="mt-4"></div>
+        <div id="numerosGerados" class="mt-4">
+          <p class="fw-bold text-center mt-3 text-success">Após a confirmação do pagamento, seus números serão gerados automaticamente e enviados para o e-mail cadastrado.</p>
+        </div>
       </div>
     </div>
 
     <div class="regulamento">
-      <h4>DESCRIÇÃO / REGULAMENTO</h4>
-      <p>📺 O sorteio será realizado <strong>AO VIVO</strong> através do Canal no YouTube <a href="https://www.youtube.com/@somosnovosricos" target="_blank" rel="noopener noreferrer">Somos Novos Ricos</a>.</p>
-
       <ul>
-        <li>❌ Não fazemos estorno de bilhetes;</li>
-        <li>❗ Dados inseridos incorretamente são responsabilidade do participante;</li>
-        <li>🕐 Caso o ganhador não seja localizado em até 10 dias, será feito novo sorteio.</li>
-        <li>📦 Envio do prêmio será via correios ou Pix no nome do ganhador.</li>
-        <li>🎉 Durante a ação poderão ocorrer sorteios extras a critério dos organizadores.</li>
+        <li>Após a confirmação de pagamento, seus números serão gerados e enviados por e-mail também</li>
       </ul>
-
-      <p><strong>Prêmio Principal:</strong> 01 iPhone 16 Pro Max ou R$ 10.000,00 no Pix</p>
-
-      <p><strong>Autorização de uso de imagem:</strong> Ao participar desta ação promocional, o participante autoriza o uso gratuito de sua imagem, nome e voz para divulgação dos resultados, premiação e ações de marketing relacionadas à campanha.</p>
     </div>
   </div>
 
@@ -132,56 +123,54 @@
   </footer>
 
   <script>
-const form = document.getElementById('pixForm');
-  const qrcodeDiv = document.getElementById('qrcode');
-  const qrcodeContainer = document.getElementById('qrcode-container');
-  const pixInput = document.getElementById('pixCopiar');
-  const numerosDiv = document.getElementById('numerosGerados');
+    const form = document.getElementById('pixForm');
+    const qrcodeDiv = document.getElementById('qrcode');
+    const qrcodeContainer = document.getElementById('qrcode-container');
+    const pixInput = document.getElementById('pixCopiar');
+    const numerosDiv = document.getElementById('numerosGerados');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    const nome = document.getElementById('nome').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const whatsapp = document.getElementById('whatsapp').value.trim();
-    const quantidade = parseInt(document.getElementById('quantidade').value);
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const quantidade = parseInt(document.getElementById('quantidade').value);
 
-    if (!nome || !email || !whatsapp || quantidade < 1) {
-      alert("Preencha todos os campos corretamente.");
-      return;
-    }
-
-    const valorCorrigido = quantidade * 1.00; // Corrigido para mínimo R$ 1,00 por cota
-    const dados = { nome, email, whatsapp, cotas: quantidade, valor: valorCorrigido };
-
-    fetch("https://proxy-fezinha.fezinha-online2025.workers.dev/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.qr_code && data.qr_code_base64) {
-        qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code gerado para pagamento Pix">`;
-        pixInput.value = data.qr_code;
-        numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">APÓS A CONFIRMAÇÃO DO PAGAMENTO SERÃO GERADOS SEUS NÚMEROS E OS MESMOS SERÃO ENVIADOS POR EMAIL.</p>`;
-        qrcodeContainer.style.display = "block";
-      } else {
-        alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
+      if (!nome || !email || !whatsapp || quantidade < 1) {
+        alert("Preencha todos os campos corretamente.");
+        return;
       }
-    })
-    .catch(err => {
-      console.error("Erro:", err);
-      alert("Erro ao gerar pagamento. Tente novamente.");
-    });
-  });
 
-  function copiarPix() {
-    const input = document.getElementById("pixCopiar");
-    navigator.clipboard.writeText(input.value)
-      .then(() => alert("Código Pix copiado!"))
-      .catch(() => alert("Erro ao copiar. Copie manualmente."));
-  }
-</script>
+      const dados = { nome, email, whatsapp, cotas: quantidade };
+
+      fetch("https://proxy-fezinha.fezinha-online2025.workers.dev/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.qr_code && data.qr_code_base64) {
+          qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code gerado para pagamento Pix">`;
+          pixInput.value = data.qr_code;
+          qrcodeContainer.style.display = "block";
+        } else {
+          alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
+        }
+      })
+      .catch(err => {
+        console.error("Erro:", err);
+        alert("Erro ao gerar pagamento. Tente novamente.");
+      });
+    });
+
+    function copiarPix() {
+      const input = document.getElementById("pixCopiar");
+      navigator.clipboard.writeText(input.value)
+        .then(() => alert("Código Pix copiado!"))
+        .catch(() => alert("Erro ao copiar. Copie manualmente."));
+    }
+  </script>
 </body>
 </html>
