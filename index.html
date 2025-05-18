@@ -132,55 +132,56 @@
   </footer>
 
   <script>
-    const form = document.getElementById('pixForm');
-    const qrcodeDiv = document.getElementById('qrcode');
-    const qrcodeContainer = document.getElementById('qrcode-container');
-    const pixInput = document.getElementById('pixCopiar');
-    const numerosDiv = document.getElementById('numerosGerados');
+const form = document.getElementById('pixForm');
+  const qrcodeDiv = document.getElementById('qrcode');
+  const qrcodeContainer = document.getElementById('qrcode-container');
+  const pixInput = document.getElementById('pixCopiar');
+  const numerosDiv = document.getElementById('numerosGerados');
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const nome = document.getElementById('nome').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const whatsapp = document.getElementById('whatsapp').value.trim();
-      const quantidade = parseInt(document.getElementById('quantidade').value);
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const quantidade = parseInt(document.getElementById('quantidade').value);
 
-      if (!nome || !email || !whatsapp || quantidade < 1) {
-        alert("Preencha todos os campos corretamente.");
-        return;
-      }
-
-      const dados = { nome, email, whatsapp, cotas: quantidade };
-
-      fetch("https://proxy-fezinha.fezinha-online2025.workers.dev/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados)
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.qr_code && data.qr_code_base64) {
-          qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code gerado para pagamento Pix">`;
-          pixInput.value = data.qr_code;
-          numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">Após a confirmação do pagamento, seus números serão gerados automaticamente e enviados para o e-mail cadastrado.</p>`;
-          qrcodeContainer.style.display = "block";
-        } else {
-          alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
-        }
-      })
-      .catch(err => {
-        console.error("Erro:", err);
-        alert("Erro ao gerar pagamento. Tente novamente.");
-      });
-    });
-
-    function copiarPix() {
-      const input = document.getElementById("pixCopiar");
-      navigator.clipboard.writeText(input.value)
-        .then(() => alert("Código Pix copiado!"))
-        .catch(() => alert("Erro ao copiar. Copie manualmente."));
+    if (!nome || !email || !whatsapp || quantidade < 1) {
+      alert("Preencha todos os campos corretamente.");
+      return;
     }
-  </script>
+
+    const valorCorrigido = quantidade * 1.00; // Corrigido para mínimo R$ 1,00 por cota
+    const dados = { nome, email, whatsapp, cotas: quantidade, valor: valorCorrigido };
+
+    fetch("https://proxy-fezinha.fezinha-online2025.workers.dev/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.qr_code && data.qr_code_base64) {
+        qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code gerado para pagamento Pix">`;
+        pixInput.value = data.qr_code;
+        numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">APÓS A CONFIRMAÇÃO DO PAGAMENTO SERÃO GERADOS SEUS NÚMEROS E OS MESMOS SERÃO ENVIADOS POR EMAIL.</p>`;
+        qrcodeContainer.style.display = "block";
+      } else {
+        alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
+      }
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+      alert("Erro ao gerar pagamento. Tente novamente.");
+    });
+  });
+
+  function copiarPix() {
+    const input = document.getElementById("pixCopiar");
+    navigator.clipboard.writeText(input.value)
+      .then(() => alert("Código Pix copiado!"))
+      .catch(() => alert("Erro ao copiar. Copie manualmente."));
+  }
+</script>
 </body>
 </html>
