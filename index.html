@@ -13,16 +13,16 @@
       padding: 0;
     }
     .logo-container {
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 20px;
       z-index: 10;
     }
     .logo {
-      max-width: 100px;
+      max-width: 90px;
     }
     .container {
-      padding-top: 120px;
+      padding-top: 140px;
     }
     .promo-img {
       max-width: 100%;
@@ -80,7 +80,7 @@
          💸 <strong>Valor:</strong> R$ 0,99 por número
       </p>
 
-      <form id="pixForm">
+      <form id="pixForm" autocomplete="off">
         <div class="mb-3">
           <label for="nome" class="form-label">Seu nome completo</label>
           <input type="text" class="form-control" id="nome" required>
@@ -154,7 +154,6 @@
 
       const dados = { nome, email, whatsapp, cotas: quantidade };
 
-      // ✅ Endpoint do Apps Script corrigido aqui:
       fetch("https://script.google.com/macros/s/AKfycbwkCLDYpx0FaVcV0mZBN6c11Wy7LaIChuGtXp9Dz6WgOU3IJ59Ab1lrNF7SuhrdoTI/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
