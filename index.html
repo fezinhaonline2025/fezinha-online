@@ -154,7 +154,8 @@
 
       const dados = { nome, email, whatsapp, cotas: quantidade };
 
-      fetch("https://sorteio.fezinha-online2025.workers.dev/", {
+      // ✅ Endpoint do Apps Script corrigido aqui:
+      fetch("https://script.google.com/macros/s/AKfycbwkCLDYpx0FaVcV0mZBN6c11Wy7LaIChuGtXp9Dz6WgOU3IJ59Ab1lrNF7SuhrdoTI/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dados)
