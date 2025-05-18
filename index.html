@@ -86,8 +86,12 @@
           <input type="text" class="form-control" id="nome" required>
         </div>
         <div class="mb-3">
-          <label for="contato" class="form-label">E-mail ou WhatsApp</label>
-          <input type="text" class="form-control" id="contato" required>
+          <label for="email" class="form-label">Seu e-mail</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="whatsapp" class="form-label">Seu WhatsApp</label>
+          <input type="tel" class="form-control" id="whatsapp" required>
         </div>
         <div class="mb-3">
           <label for="quantidade" class="form-label">Quantidade de cotas</label>
@@ -139,15 +143,16 @@
       e.preventDefault();
 
       const nome = document.getElementById('nome').value.trim();
-      const contato = document.getElementById('contato').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
       const quantidade = parseInt(document.getElementById('quantidade').value);
 
-      if (!nome || !contato || quantidade < 1) {
+      if (!nome || !email || !whatsapp || quantidade < 1) {
         alert("Preencha todos os campos corretamente.");
         return;
       }
 
-      const dados = { nome, contato, cotas: quantidade };
+      const dados = { nome, email, whatsapp, cotas: quantidade };
 
       fetch("https://sorteio.fezinha-online2025.workers.dev/", {
         method: "POST",
