@@ -90,7 +90,7 @@
         </div>
         <div class="mb-3">
           <label for="whatsapp" class="form-label">Seu WhatsApp</label>
-          <input type="tel" class="form-control" id="whatsapp" required>
+          <input type="tel" class="form-control" id="whatsapp" inputmode="numeric" required>
         </div>
         <div class="mb-3">
           <label for="quantidade" class="form-label">Quantidade de cotas</label>
@@ -103,8 +103,8 @@
         <h5 class="mt-4">Escaneie o QR Code para pagar:</h5>
         <div id="qrcode"></div>
         <p class="mt-3">Ou copie o código Pix abaixo:</p>
-        <input type="text" id="pixCopiar" class="form-control" readonly>
-        <button type="button" onclick="copiarPix()" class="btn btn-sm btn-secondary mt-2">Copiar código</button>
+        <input type="text" id="pixCopiar" class="form-control" aria-label="Código Pix gerado" readonly>
+        <button type="button" onclick="copiarPix()" class="btn btn-sm btn-secondary mt-2" id="botaoCopiarPix">Copiar código</button>
         <div id="numerosGerados" class="mt-4"></div>
       </div>
     </div>
@@ -146,7 +146,7 @@
       const whatsapp = document.getElementById('whatsapp').value.trim();
       const quantidade = parseInt(document.getElementById('quantidade').value);
 
-      if (!nome || !email || !whatsapp || quantidade < 1) {
+      if (!nome || !email || !whatsapp || isNaN(quantidade) || quantidade < 1) {
         alert("Preencha todos os campos corretamente.");
         return;
       }
@@ -179,7 +179,7 @@
       })
       .catch(err => {
         console.error("Erro:", err);
-        alert("Erro ao gerar pagamento. Tente novamente.");
+        alert("Erro ao gerar pagamento. Tente novamente mais tarde.");
       });
     });
 
