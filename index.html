@@ -58,6 +58,27 @@
       max-width: 300px;
       margin: auto;
     }
+    /* Botão flutuante do WhatsApp */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    .whatsapp-button a {
+      display: flex;
+      align-items: center;
+      background-color: #25d366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .whatsapp-button a:hover {
+      background-color: #1ebe5b;
+    }
   </style>
 </head>
 <body>
@@ -125,6 +146,13 @@
 
       <p><strong>Autorização de uso de imagem:</strong> Ao participar desta ação promocional, o participante autoriza o uso gratuito de sua imagem, nome e voz para divulgação dos resultados, premiação e ações de marketing relacionadas à campanha.</p>
     </div>
+  </div>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <div class="whatsapp-button">
+    <a href="https://wa.me/5548992102527" target="_blank" aria-label="Suporte no WhatsApp">
+      💬 Suporte via WhatsApp
+    </a>
   </div>
 
   <footer class="text-center text-muted mt-4 mb-3" style="font-size: 14px;">
