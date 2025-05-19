@@ -171,7 +171,7 @@
         if (data.qr_code && data.qr_code_base64) {
           qrcodeDiv.innerHTML = `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code gerado para pagamento Pix">`;
           pixInput.value = data.qr_code;
-          numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">Após a confirmação do pagamento, seus números serão gerados automaticamente e enviados para o e-mail cadastrado.</p>`;
+          numerosDiv.innerHTML = `<p class="fw-bold text-center mt-3 text-success">Após a confirmação do pagamento, seus números serão gerados automaticamente e enviados para o WhatsApp cadastrado.</p>`;
           qrcodeContainer.style.display = "block";
         } else {
           alert("Erro ao gerar o pagamento. Verifique os dados e tente novamente.");
